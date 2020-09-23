@@ -6,15 +6,14 @@
 #    By: mkristie <kukinpower@ya.ru>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/23 20:12:37 by mkristie          #+#    #+#              #
-#    Updated: 2020/09/24 00:44:44 by mkristie         ###   ########.fr        #
+#    Updated: 2020/09/24 01:28:28 by mkristie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =		./ft_strlen.s \
 			./ft_strcpy.s \
 			./ft_strcmp.s \
-			
-			# ./ft_strdup.s \
+			./ft_strdup.s \
 			# ./ft_write.s \
 			# ./ft_read.s \
 

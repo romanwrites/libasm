@@ -6,7 +6,7 @@
 /*   By: mkristie <kukinpower@ya.ru>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 19:42:50 by mkristie          #+#    #+#             */
-/*   Updated: 2020/09/24 00:41:35 by mkristie         ###   ########.fr       */
+/*   Updated: 2020/09/24 01:30:04 by mkristie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
+
+void			test_strdup(char *str)
+{
+	char *s1 = strdup(str);
+	char *s2 = ft_strdup(str);
+	if (strcmp(s1, s2) == 0)
+		printf("\033[32m[OK]\033[0m");
+	else
+		printf("\033[31m[KO]\033[0m");
+	printf("std: |%s|, asm: |%s| len std: |%ld|, len asm: |%ld|\n", s1, s2, strlen(s1), strlen(s2));
+}
 
 void			test_strcmp(char *s1, char *s2)
 {
@@ -75,6 +86,10 @@ int			main(void)
 	test_strcmp("", " ");
 	test_strcmp("Hello", "Helloo");
 	
+	printf("\n-----------------------FT_STRDUP----------------------\n");
+	test_strdup("");
+	test_strdup("lolkek");
+	test_strdup(longstr);
 	
 	return (0);
 }
