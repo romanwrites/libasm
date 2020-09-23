@@ -1,3 +1,6 @@
+;char *ft_strlen(const char *s);
+;rdi == s
+
 global _ft_strlen
 
 section .text

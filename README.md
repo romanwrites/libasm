@@ -17,6 +17,8 @@
 
 [Difference between JE/JNE and JZ/JNZ](https://stackoverflow.com/questions/14267081/difference-between-je-jne-and-jz-jnz)
 
+[Assembly - Conditions](https://www.tutorialspoint.com/assembly_programming/assembly_conditions.htm)
+
 ### How to compile
 ```
 nasm -f macho64 hello.s

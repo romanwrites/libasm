@@ -1,4 +1,4 @@
-;char *ft_stpcpy(char *dst, const char *src);
+;char *ft_strcpy(char *dst, const char *src);
 ;rdi == dst, rsi == src
 
 global _ft_strcpy
