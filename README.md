@@ -19,9 +19,28 @@
 
 [Assembly - Conditions](https://www.tutorialspoint.com/assembly_programming/assembly_conditions.htm)
 
+[Mac OS X 64 bit Assembly System Calls](http://dustin.schultz.io/mac-os-x-64-bit-assembly-system-calls.html)
+
 ### How to compile
 ```
 nasm -f macho64 hello.s
 ld -e start -macosx_version_min 10.13.0 -static -o hello hello.o
 ./hello
+```
+
+```
+jmp     ; Unconditional Jump
+je      ; Jump if Equal
+jne     ; Jump if Not Equal
+jg      ; Jump if Greater
+jge     ; Jump if Greater or Equal
+ja      ; Jump if Above (unsigned comparison)
+jae     ; Jump if Above or Equal (unsigned comparison)
+jl      ; Jump if Lesser
+jle     ; Jump if Less or Equal
+jb      ; Jump if Below (unsigned comparison)
+jz      ; Jump if Zero
+jnz     ; Jump if Not Zero
+jc      ; Jump if carry set (C == 1)
+jnc     ; Jump if carry is not set (C == 0)
 ```
