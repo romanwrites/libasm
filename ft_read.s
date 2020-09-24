@@ -1,12 +1,12 @@
 ;ssize_t ft_read(int fildes, void *buf, size_t nbyte);
 ;rdi == fildes, rsi == buf, rdx == nbyte 
 
-global _ft_write
+global _ft_read
 extern ___error
 
 section .text
 
-_ft_write:
+_ft_read:
 xor		rax, rax
 mov		rax, 0x2000003
 syscall
