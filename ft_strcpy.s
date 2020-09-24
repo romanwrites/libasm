@@ -22,7 +22,7 @@ jmp     _ft_strcpy_loop         ; new cycle
 
 _is_null_elem:
 mov     byte [rdi+rcx], 0       ; null-terminating
-mov     rax, rcx                ; store len in rax
+mov     rax, rdi                ; store len in rax
 pop     rdx                     ; restore rdx
 pop     rcx                     ; restore rcx
 ret                             ; return rax value

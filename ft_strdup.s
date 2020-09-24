@@ -9,7 +9,6 @@ extern _malloc
 global _ft_strdup
 
 _ft_strdup:
-cmp		rdi, 0			; check s1 value
 push	rdi				; save s1
 je		_err
 call	_ft_strlen
@@ -26,5 +25,4 @@ ret
 
 _err:
 mov		rax, 0
-pop		rcx
 ret

@@ -26,6 +26,21 @@ jmp     _ft_strcmp_loop                 ; new cycle
 
 _end_cmp:        
 sub     rax, rdx
+cmp     rax, 0
+jl      _ret_lesser
+cmp     rax, 0
+jg      _ret_greater
+jmp     _ret_rax                        
+
+_ret_lesser:
+mov     rax, -1
+jmp     _ret_rax
+
+_ret_greater:
+mov     rax, 1
+jmp     _ret_rax
+
+_ret_rax:
 pop     rdx                             ; restore rdx
 pop     rcx                             ; restore rcx
 ret                                     ; return rax value

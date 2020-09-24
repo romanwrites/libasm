@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkristie <kukinpower@ya.ru>                +#+  +:+       +#+        */
+/*   By: mkristie <mkristie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 19:42:50 by mkristie          #+#    #+#             */
-/*   Updated: 2020/09/24 04:35:22 by mkristie         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:23:38 by mkristie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/errno.h>
 #include "libasm.h"
 
 #define BUF 512
@@ -120,11 +120,15 @@ void			test_strdup(char *str)
 	else
 		printf("\033[1m\033[48;2;175;135;255m\033[38;2;255;255;255m[KO]\033[0m   ");
 	printf("std: |%s|, asm: |%s| len std: |%ld|, len asm: |%ld|\n", s1, s2, strlen(s1), strlen(s2));
+	free(s1);
+	free(s2);
 }
 
 void			test_strcmp(char *s1, char *s2)
 {
-	if (strcmp(s1, s2) == ft_strcmp(s1, s2))
+	if (strcmp(s1, s2) == ft_strcmp(s1, s2) || \
+		strcmp(s1, s2) < 0 && ft_strcmp(s1, s2) < 0 || \
+		strcmp(s1, s2) > 0 && ft_strcmp(s1, s2) > 0)
 		printf("\033[48;2;0;250;154m\033[38;2;0;0;0m[OK]\033[0m   ");
 	else
 		printf("\033[1m\033[48;2;175;135;255m\033[38;2;255;255;255m[KO]\033[0m   ");
@@ -176,7 +180,7 @@ int			main(void)
 	test_strcmp("Helloo", "Hello");
 	test_strcmp("", " ");
 	test_strcmp("Hello", "Helloo");
-	
+
 	printf("\n-----------------------FT_STRDUP----------------------\n");
 	test_strdup("");
 	test_strdup("lolkek");
@@ -194,6 +198,17 @@ int			main(void)
 	test_write(fd1, fd2, longstr, strlen(longstr));
 	test_write(-1, -1, longstr, strlen(longstr));
 
+	printf("----FT_WRITE STDOUT----\n");
+	int std_wr = write(1, "Hello, world!\n", ft_strlen("Hello, world!\n"));
+	printf("std write len: %d\n", std_wr);
+	int ft_wr = ft_write(1, "Hello, world!\n", ft_strlen("Hello, world!\n"));
+	printf("ft_write len: %d\n", ft_wr);
+	if (ft_wr == std_wr)
+		printf("\033[48;2;0;250;154m\033[38;2;0;0;0m[OK]\033[0m   ");
+	else
+		printf("\033[1m\033[48;2;175;135;255m\033[38;2;255;255;255m[KO]\033[0m   ");
+	printf("STDOT: std: %-4d, asm: %-4d\n", std_wr, ft_wr);
+
 	printf("\n-----------------------FT_READ----------------------\n");
 	fd1 = open("file_to_read.txt", O_RDONLY);
 	fd2 = open("file_to_read.txt", O_RDONLY);
@@ -209,6 +224,23 @@ int			main(void)
 	test_read(200, 200, 0);
 	test_read(200, 200, -1);
 	test_read(200, 200, 10);
+
+	printf("----FT_READ STDOUT----\n");
+	char	s1[BUF];
+	char	s2[BUF];
+	printf("enter string for standard read: \n");
+	int std_re = read(0, s2, BUF);
+	printf("std str: %s", s2);
+	printf("std return value: %d\n", std_re);
+	printf("enter string for asm ft_read: \n");
+	int ft_re = ft_read(0, s1, BUF);
+	printf("my: %s", s1);
+	printf("asm return value: %d\n", ft_re);
+	if (ft_re == std_re)
+		printf("\033[48;2;0;250;154m\033[38;2;0;0;0m[OK]\033[0m   ");
+	else
+		printf("\033[1m\033[48;2;175;135;255m\033[38;2;255;255;255m[KO]\033[0m   ");
+	printf("STDIN READ: std: %-4d, asm: %-4d\n", std_re, ft_re);
 	
 	return (0);
 }
